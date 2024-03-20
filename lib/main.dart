@@ -75,6 +75,21 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: 250,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Correo Electronico',
+                        suffixIcon: Icon(
+                          FontAwesomeIcons.envelope,
+                          size: 17,
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
