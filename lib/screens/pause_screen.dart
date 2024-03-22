@@ -3,7 +3,7 @@ import 'package:deimox_apli/models/exercise.dart';
 import 'package:deimox_apli/widgets/exercise_tile.dart';
 import 'package:deimox_apli/screens/timer_screen.dart';
 
-class PauseScreen extends StatelessWidget {
+class HomePage extends StatelessWidget {
   final List<Exercise> exercises = [
     Exercise(name: 'Estiramiento de brazos', description: 'Descripción...'),
     Exercise(name: 'Estiramiento de piernas', description: 'Descripción...'),

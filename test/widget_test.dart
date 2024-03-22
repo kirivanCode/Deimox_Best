@@ -4,7 +4,7 @@ import 'package:deimox_apli/screens/pause_screen.dart'; // Importa PauseScreen
 
 void main() {
   testWidgets('PauseScreen UI Test', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(home: PauseScreen()));
+    await tester.pumpWidget(MaterialApp(home: HomePage()));
 
     // Verificar si el título se muestra correctamente
     expect(find.text('Ejercicios de Pausas Activas'), findsOneWidget);
