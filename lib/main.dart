@@ -20,6 +20,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _passwordHidden = true;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isRegistered = false;
@@ -43,7 +44,8 @@ class _LoginPageState extends State<LoginPage> {
       final enteredEmail = emailController.text;
       final enteredPassword = passwordController.text;
 
-      if (enteredEmail == registeredEmail && enteredPassword == registeredPassword) {
+      if (enteredEmail == registeredEmail &&
+          enteredPassword == registeredPassword) {
         setState(() {
           isLoggedIn = true;
         });
@@ -53,7 +55,8 @@ class _LoginPageState extends State<LoginPage> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text('Error de inicio de sesión'),
-              content: Text('Credenciales incorrectas. Verifica tu correo y contraseña.'),
+              content: Text(
+                  'Credenciales incorrectas. Verifica tu correo y contraseña.'),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
@@ -134,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 0, 136, 102),
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(
@@ -160,25 +163,38 @@ class _LoginPageState extends State<LoginPage> {
                             suffixIcon: Icon(
                               FontAwesomeIcons.envelope,
                               size: 17,
+                              color: Colors.white,
                             ),
                             hintStyle: TextStyle(color: Colors.white),
                           ),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       Container(
                         width: 250,
                         child: TextField(
                           controller: passwordController,
+                          obscureText: _passwordHidden,
                           decoration: InputDecoration(
                             labelText: 'Contraseña',
                             labelStyle: TextStyle(color: Colors.white),
-                            suffixIcon: Icon(
-                              FontAwesomeIcons.eyeSlash,
-                              size: 17,
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _passwordHidden
+                                    ? FontAwesomeIcons.eyeSlash
+                                    : FontAwesomeIcons.eye,
+                                size: 17,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _passwordHidden = !_passwordHidden;
+                                });
+                              },
                             ),
                             hintStyle: TextStyle(color: Colors.white),
                           ),
-                          obscureText: true,
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       Padding(
@@ -240,7 +256,7 @@ class _LoginPageState extends State<LoginPage> {
                         'Iniciar Sesión con:',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 2, 2, 2),
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(
@@ -250,7 +266,8 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Icon(FontAwesomeIcons.facebookF, color: Colors.white),
-                          Icon(FontAwesomeIcons.solidEnvelope, color: Colors.white),
+                          Icon(FontAwesomeIcons.solidEnvelope,
+                              color: Colors.white),
                           Icon(FontAwesomeIcons.google, color: Colors.white),
                         ],
                       ),
@@ -266,18 +283,22 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
+class RegisterPage extends StatefulWidget {
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
 
-
-class RegisterPage extends StatelessWidget {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  bool _passwordHidden = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Registro'),
-        backgroundColor: Colors.black, // Cambiar color de fondo de la barra de navegación
+        backgroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -319,7 +340,7 @@ class RegisterPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 136, 102),
+                        color: Colors.white,
                       ),
                     ),
                     SizedBox(
@@ -339,6 +360,7 @@ class RegisterPage extends StatelessWidget {
                           ),
                           hintStyle: TextStyle(color: Colors.white),
                         ),
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                     SizedBox(height: 20),
@@ -349,14 +371,24 @@ class RegisterPage extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'Contraseña',
                           labelStyle: TextStyle(color: Colors.white),
-                          suffixIcon: Icon(
-                            FontAwesomeIcons.eyeSlash,
-                            size: 17,
-                            color: Colors.white,
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _passwordHidden = !_passwordHidden;
+                              });
+                            },
+                            child: Icon(
+                              _passwordHidden
+                                  ? FontAwesomeIcons.eyeSlash
+                                  : FontAwesomeIcons.eye,
+                              size: 17,
+                              color: Colors.white,
+                            ),
                           ),
                           hintStyle: TextStyle(color: Colors.white),
                         ),
-                        obscureText: true,
+                        obscureText: _passwordHidden,
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                     SizedBox(height: 20),
@@ -364,16 +396,17 @@ class RegisterPage extends StatelessWidget {
                       onPressed: () {
                         final email = emailController.text;
                         final password = passwordController.text;
-                        Navigator.pop(context, {'email': email, 'password': password});
+                        Navigator.pop(
+                            context, {'email': email, 'password': password});
                       },
                       child: Text(
                         'Registrarse',
-                        style: TextStyle(fontSize: 18.0),
+                        style: TextStyle(fontSize: 18.0, color: Colors.white),
                       ),
                       style: ElevatedButton.styleFrom(
-                        
-                        // Cambiar color de fondo del botón
-                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                        backgroundColor: Colors.lightGreen,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                       ),
                     ),
                   ],
