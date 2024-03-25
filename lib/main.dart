@@ -323,7 +323,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Image.asset('assets/logo.png'),
               Container(
-                height: 500,
+                height: 400,
                 width: 325,
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 55, 64, 70),
