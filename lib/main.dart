@@ -1,4 +1,6 @@
+import 'package:deimox_apli/screens/inicio.dart';
 import 'package:deimox_apli/screens/pause_screen.dart';
+import 'package:deimox_apli/screens/inicio.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:deimox_apli/register/register.dart';
@@ -94,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     if (isLoggedIn) {
-      return HomePage();
+      return Inicio();
     } else {
       return Scaffold(
         body: SingleChildScrollView(
@@ -119,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 10,
                 ),
-                Image.asset('assets/logo.png'),
+                Image.asset('assets/images/logo.png'),
                 Container(
                   height: 500,
                   width: 325,

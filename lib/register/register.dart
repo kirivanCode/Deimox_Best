@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -40,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(
                 height: 10,
               ),
-              Image.asset('assets/logo.png'),
+              Image.asset('assets/images/logo.png'),
               Container(
                 height: 400,
                 width: 325,
@@ -55,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       height: 30,
                     ),
                     Text(
-                      'Registro',
+                      'Registrarse',
                       style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.bold,
@@ -110,7 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 30),
                     ElevatedButton(
                       onPressed: () {
                         final email = emailController.text;

@@ -27,4 +27,9 @@ flutter:
 
 
   assets:
-    - assets/logo.png
+    - assets/images/logo.png
+    - assets/images/logotipo.png
+    - assets/images/ejercicio.png
+    - assets/images/empresario.png
+    - assets/images/tiempo.png
+    - assets/images/triangulo.png
