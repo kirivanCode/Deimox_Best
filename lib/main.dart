@@ -1,6 +1,6 @@
 import 'package:deimox_apli/screens/inicio.dart';
-import 'package:deimox_apli/screens/pause_screen.dart';
-import 'package:deimox_apli/screens/inicio.dart';
+//import 'package:deimox_apli/screens/pause_screen.dart';
+//import 'package:deimox_apli/screens/inicio.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:deimox_apli/register/register.dart';
@@ -121,20 +121,29 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 10,
                 ),
-                Image.asset('assets/images/logo.png'),
-                Container(
-                  height: 500,
-                  width: 325,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 55, 64, 70),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                
+                                  Container(
+                    height: 710,
+                    width: 325,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 21, 21, 21),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          spreadRadius: 2,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
                         height: 30,
                       ),
+                       Image.asset('assets/images/logo.png'),
                       Text(
                         'Bienvenidos',
                         style: TextStyle(
@@ -142,10 +151,13 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
+                        
                       ),
                       SizedBox(
                         height: 10,
                       ),
+
+                      
                       Text(
                         'Ingrese su cuenta',
                         style: TextStyle(

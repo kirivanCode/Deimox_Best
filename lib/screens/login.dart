@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:deimox_apli/screens/pause_screen.dart';
+//import 'package:deimox_apli/screens/pause_screen.dart';
 import 'package:deimox_apli/screens/inicio.dart';
 
 void main() {
