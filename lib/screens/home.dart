@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 //import 'package:deimox_apli/screens/pause_screen.dart';
 import 'package:deimox_apli/screens/inicio.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
