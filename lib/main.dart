@@ -93,203 +93,176 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    if (isLoggedIn) {
-      return Inicio();
-    } else {
-      return Scaffold(
-        body: SingleChildScrollView(
+@override
+Widget build(BuildContext context) {
+  if (isLoggedIn) {
+    return Inicio();
+  } else {
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(255, 0, 0, 0),
+              Color.fromARGB(255, 0, 0, 0),
+              Color.fromARGB(255, 0, 0, 0),
+            ],
+          ),
+        ),
+        child: Center(
           child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width * 0.9,
+            padding: EdgeInsets.all(20.0),
             decoration: BoxDecoration(
-              // Cambiar el color a negro
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color.fromARGB(255, 0, 0, 0),
-                  Color.fromARGB(255, 0, 0, 0),
-                  Color.fromARGB(255, 0, 0, 0),
-                ],
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 650,
-                  width: 325,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 21, 21, 21),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        spreadRadius: 2,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Image.asset('assets/images/logo.png'),
-                      Text(
-                        'Bienvenidos',
-                        style: TextStyle(
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Ingrese su cuenta',
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        width: 250,
-                        child: TextField(
-                          controller: emailController,
-                          decoration: InputDecoration(
-                            labelText: 'Correo Electrónico',
-                            labelStyle: TextStyle(color: Colors.white),
-                            suffixIcon: Icon(
-                              FontAwesomeIcons.envelope,
-                              size: 17,
-                              color: Colors.white,
-                            ),
-                            hintStyle: TextStyle(color: Colors.white),
-                          ),
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      Container(
-                        width: 250,
-                        child: TextField(
-                          controller: passwordController,
-                          obscureText: _passwordHidden,
-                          decoration: InputDecoration(
-                            labelText: 'Contraseña',
-                            labelStyle: TextStyle(color: Colors.white),
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _passwordHidden
-                                    ? FontAwesomeIcons.eyeSlash
-                                    : FontAwesomeIcons.eye,
-                                size: 17,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _passwordHidden = !_passwordHidden;
-                                });
-                              },
-                            ),
-                            hintStyle: TextStyle(color: Colors.white),
-                          ),
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: register,
-                              child: Text(
-                                'Registrarse',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            Text(
-                              '¿Contraseña olvidada?',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      GestureDetector(
-                        onTap: login,
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: 250,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [
-                                Color(0xFF98FF98),
-                                Color(0xFF00FF00),
-                                Color(0xFF50C878),
-                              ],
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(12.0),
-                            child: Text(
-                              'Iniciar Sesión',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        'Iniciar Sesión con:',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(FontAwesomeIcons.facebookF, color: Colors.white),
-                          Icon(FontAwesomeIcons.solidEnvelope,
-                              color: Colors.white),
-                          Icon(FontAwesomeIcons.google, color: Colors.white),
-                        ],
-                      ),
-                    ],
-                  ),
+              color: Color.fromARGB(255, 21, 21, 21),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  spreadRadius: 2,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
                 ),
               ],
             ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/images/logo.png', height: 150),
+                  SizedBox(height: 20),
+                  Text(
+                    'Ingrese su cuenta',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        labelText: 'Correo Electrónico',
+                        labelStyle: TextStyle(color: Colors.white),
+                        suffixIcon: Icon(
+                          FontAwesomeIcons.envelope,
+                          size: 17,
+                          color: Colors.white,
+                        ),
+                        hintStyle: TextStyle(color: Colors.white),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: TextField(
+                      controller: passwordController,
+                      obscureText: _passwordHidden,
+                      decoration: InputDecoration(
+                        labelText: 'Contraseña',
+                        labelStyle: TextStyle(color: Colors.white),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _passwordHidden
+                                ? FontAwesomeIcons.eyeSlash
+                                : FontAwesomeIcons.eye,
+                            size: 17,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _passwordHidden = !_passwordHidden;
+                            });
+                          },
+                        ),
+                        hintStyle: TextStyle(color: Colors.white),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: register,
+                        child: Text(
+                          'Registrarse',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          // Handle forgot password
+                        },
+                        child: Text(
+                          '¿Contraseña olvidada?',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: login,
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(70),
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            Color(0xFF98FF98),
+                            Color(0xFF00FF00),
+                            Color(0xFF50C878),
+                          ],
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(12.0),
+                        child: Text(
+                          'Iniciar Sesión',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  Text(
+                    'Iniciar Sesión con:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(FontAwesomeIcons.facebookF, color: Colors.white),
+                      Icon(FontAwesomeIcons.solidEnvelope, color: Colors.white),
+                      Icon(FontAwesomeIcons.google, color: Colors.white),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      );
-    }
+      ),
+    );
   }
+}
 }

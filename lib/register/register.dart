@@ -44,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 400,
                 width: 325,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 55, 64, 70),
+                  color: Color.fromARGB(255, 15, 15, 15),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(

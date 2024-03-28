@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:deimox_apli/models/exercise.dart';
-import 'package:deimox_apli/widgets/exercise_tile.dart';
+//import 'package:deimox_apli/widgets/exercise_tile.dart';
 import 'package:deimox_apli/screens/timer_screen.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,26 +16,57 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ejercicios de Pausas Activas'),
+        title: Text(
+          'Ejercicios de Pausas Activas',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.black,
       ),
-      body: ListView.builder(
-        itemCount: exercises.length,
-        itemBuilder: (context, index) {
-          return ExerciseTile(
-            exercise: exercises[index],
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TimerScreen(
-                    exercises: exercises,
-                    exerciseIndex: index,
-                  ),
+      body: Container(
+        color: Colors.black,
+        child: ListView.builder(
+          itemCount: exercises.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              );
-            },
-          );
-        },
+                child: ListTile(
+                  title: Text(
+                    exercises[index].name,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text(
+                    exercises[index].description,
+                    style: TextStyle(
+                      color: Colors.white70,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TimerScreen(
+                          exercises: exercises,
+                          exerciseIndex: index,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
