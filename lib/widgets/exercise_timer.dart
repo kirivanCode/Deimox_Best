@@ -66,33 +66,36 @@ class _ExerciseTimerState extends State<ExerciseTimer> {
 
   @override
   Widget build(BuildContext context) {
+    int minutes = _seconds ~/ 60;
+    int seconds = _seconds % 60;
+
     return Column(
       children: [
         Text(
-          'Tiempo restante: ${_seconds ~/ 60}:${_seconds % 60 < 10 ? '0' : ''}${_seconds % 60}',
-          style: TextStyle(fontSize: 24),
+          '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
+          style: TextStyle(fontSize: 40),
         ),
         SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              icon: Icon(Icons.arrow_left),
+              icon: Icon(Icons.arrow_left, size: 40),
               onPressed: widget.onPrevious,
             ),
             SizedBox(width: 20),
             IconButton(
-              icon: Icon(_isRunning ? Icons.pause : Icons.play_arrow),
+              icon: Icon(_isRunning ? Icons.pause : Icons.play_arrow, size: 40),
               onPressed: _pauseOrResume,
             ),
             SizedBox(width: 20),
             IconButton(
-              icon: Icon(Icons.replay),
+              icon: Icon(Icons.replay, size: 40),
               onPressed: _reset,
             ),
             SizedBox(width: 20),
             IconButton(
-              icon: Icon(Icons.arrow_right),
+              icon: Icon(Icons.arrow_right, size: 40),
               onPressed: widget.onNext,
             ),
           ],
