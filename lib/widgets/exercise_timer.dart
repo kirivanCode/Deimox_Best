@@ -6,12 +6,14 @@ class ExerciseTimer extends StatefulWidget {
   final VoidCallback onTimerEnd;
   final VoidCallback onNext;
   final VoidCallback onPrevious;
+  final bool autoRestart;
 
   ExerciseTimer({
     required this.duration,
     required this.onTimerEnd,
     required this.onNext,
     required this.onPrevious,
+    this.autoRestart = false, // Valor por defecto es false
   });
 
   @override
@@ -37,6 +39,9 @@ class _ExerciseTimerState extends State<ExerciseTimer> {
         timer.cancel();
         _isRunning = false;
         widget.onTimerEnd();
+        if (widget.autoRestart) {
+          _restartTimer();
+        }
       } else if (_isRunning) {
         setState(() {
           _seconds--;
@@ -58,6 +63,11 @@ class _ExerciseTimerState extends State<ExerciseTimer> {
     });
   }
 
+  void _restartTimer() {
+    _reset();
+    _startTimer();
+  }
+
   @override
   void dispose() {
     _timer.cancel();
@@ -71,19 +81,29 @@ class _ExerciseTimerState extends State<ExerciseTimer> {
 
     return Column(
       children: [
-        Text(
-          '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
-          style: TextStyle(fontSize: 40),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back, size: 40),
+              onPressed: widget.onPrevious,
+            ),
+            SizedBox(width: 20),
+            Text(
+              '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}',
+              style: TextStyle(fontSize: 40),
+            ),
+            SizedBox(width: 20),
+            IconButton(
+              icon: Icon(Icons.arrow_forward, size: 40),
+              onPressed: widget.onNext,
+            ),
+          ],
         ),
         SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(
-              icon: Icon(Icons.arrow_left, size: 40),
-              onPressed: widget.onPrevious,
-            ),
-            SizedBox(width: 20),
             IconButton(
               icon: Icon(_isRunning ? Icons.pause : Icons.play_arrow, size: 40),
               onPressed: _pauseOrResume,
@@ -92,11 +112,6 @@ class _ExerciseTimerState extends State<ExerciseTimer> {
             IconButton(
               icon: Icon(Icons.replay, size: 40),
               onPressed: _reset,
-            ),
-            SizedBox(width: 20),
-            IconButton(
-              icon: Icon(Icons.arrow_right, size: 40),
-              onPressed: widget.onNext,
             ),
           ],
         ),

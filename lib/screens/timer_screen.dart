@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:deimox_apli/models/exercise.dart';
 import 'package:deimox_apli/widgets/exercise_timer.dart';
-import 'package:deimox_apli/screens/pause_screen.dart';
 
 class TimerScreen extends StatefulWidget {
   final List<Exercise> exercises;
@@ -46,7 +45,11 @@ class _TimerScreenState extends State<TimerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ejercicio: ${_currentExercise.name}'),
+        title: Text(
+          'Pausa Activa: ${_currentExercise.name}',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true, // Centrar el título en la AppBar
       ),
       body: Center(
         child: Column(
@@ -55,10 +58,11 @@ class _TimerScreenState extends State<TimerScreen> {
             Text(_currentExercise.description),
             SizedBox(height: 20),
             ExerciseTimer(
-              duration: 60, // Cambia a la duración que desees
+              duration: 30, // Cambia a la duración que desees
               onTimerEnd: _goToNextExercise,
               onNext: _goToNextExercise,
               onPrevious: _goToPreviousExercise,
+              autoRestart: true, // Habilita el reinicio automático
             ),
           ],
         ),
