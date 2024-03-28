@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:deimox_apli/screens/pause_screen.dart';
 
 class Inicio extends StatelessWidget {
   @override
@@ -60,35 +61,62 @@ class Inicio extends StatelessWidget {
                       height: 10,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildIconWithDescription(
-                          'assets/images/ejercicio.png',
-                          'Activos',
-                          context,
+                        Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomePage(),
+                                  ),
+                                );
+                              },
+                              child: _buildIconWithDescription(
+                                'assets/images/ejercicio.png',
+                                'Activos',
+                                context,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            GestureDetector(
+                              onTap: () {
+                                // Agrega aquí la navegación para las otras imágenes según sea necesario
+                              },
+                              child: _buildIconWithDescription(
+                                'assets/images/empresario.png',
+                                'Cuerpo',
+                                context,
+                              ),
+                            ),
+                          ],
                         ),
-                        _buildIconWithDescription(
-                          'assets/images/triangulo.png',
-                          'Pasivos',
-                          context,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildIconWithDescription(
-                          'assets/images/empresario.png',
-                          'Cuerpo',
-                          context,
-                        ),
-                        _buildIconWithDescription(
-                          'assets/images/tiempo.png',
-                          'Alarma',
-                          context,
+                        Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                // Agrega aquí la navegación para las otras imágenes según sea necesario
+                              },
+                              child: _buildIconWithDescription(
+                                'assets/images/triangulo.png',
+                                'Pasivos',
+                                context,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            GestureDetector(
+                              onTap: () {
+                                // Agrega aquí la navegación para las otras imágenes según sea necesario
+                              },
+                              child: _buildIconWithDescription(
+                                'assets/images/tiempo.png',
+                                'Alarma',
+                                context,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
