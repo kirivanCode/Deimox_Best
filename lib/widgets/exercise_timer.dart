@@ -1,11 +1,18 @@
-import 'dart:async'; // Agrega esta línea para importar Timer
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 class ExerciseTimer extends StatefulWidget {
   final int duration;
   final VoidCallback onTimerEnd;
+  final VoidCallback onNext;
+  final VoidCallback onPrevious;
 
-  ExerciseTimer({required this.duration, required this.onTimerEnd});
+  ExerciseTimer({
+    required this.duration,
+    required this.onTimerEnd,
+    required this.onNext,
+    required this.onPrevious,
+  });
 
   @override
   _ExerciseTimerState createState() => _ExerciseTimerState();
@@ -62,21 +69,31 @@ class _ExerciseTimerState extends State<ExerciseTimer> {
     return Column(
       children: [
         Text(
-          'Tiempo restante: $_seconds segundos',
-          style: TextStyle(fontSize: 20),
+          'Tiempo restante: ${_seconds ~/ 60}:${_seconds % 60 < 10 ? '0' : ''}${_seconds % 60}',
+          style: TextStyle(fontSize: 24),
         ),
         SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: _pauseOrResume,
-              child: Text(_isRunning ? 'Pausa' : 'Reanudar'),
+            IconButton(
+              icon: Icon(Icons.arrow_left),
+              onPressed: widget.onPrevious,
             ),
             SizedBox(width: 20),
-            ElevatedButton(
+            IconButton(
+              icon: Icon(_isRunning ? Icons.pause : Icons.play_arrow),
+              onPressed: _pauseOrResume,
+            ),
+            SizedBox(width: 20),
+            IconButton(
+              icon: Icon(Icons.replay),
               onPressed: _reset,
-              child: Text('Restablecer'),
+            ),
+            SizedBox(width: 20),
+            IconButton(
+              icon: Icon(Icons.arrow_right),
+              onPressed: widget.onNext,
             ),
           ],
         ),

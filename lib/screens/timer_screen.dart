@@ -1,44 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:deimox_apli/models/exercise.dart';
 import 'package:deimox_apli/widgets/exercise_timer.dart';
+import 'package:deimox_apli/screens/pause_screen.dart';
 
 class TimerScreen extends StatefulWidget {
-  final Exercise exercise;
-  final int duration;
+  final List<Exercise> exercises;
+  final int exerciseIndex;
 
-  TimerScreen({required this.exercise, required this.duration});
+  TimerScreen({required this.exercises, required this.exerciseIndex});
 
   @override
   _TimerScreenState createState() => _TimerScreenState();
 }
 
 class _TimerScreenState extends State<TimerScreen> {
-  late ExerciseTimer _exerciseTimer; // Cambio aquí
+  late int _currentExerciseIndex;
+  late Exercise _currentExercise;
 
   @override
   void initState() {
     super.initState();
-    _exerciseTimer = ExerciseTimer(
-      duration: widget.duration,
-      onTimerEnd: () {
-        Navigator.pop(context);
-      },
-    );
+    _currentExerciseIndex = widget.exerciseIndex;
+    _currentExercise = widget.exercises[_currentExerciseIndex];
+  }
+
+  void _goToNextExercise() {
+    if (_currentExerciseIndex < widget.exercises.length - 1) {
+      setState(() {
+        _currentExerciseIndex++;
+        _currentExercise = widget.exercises[_currentExerciseIndex];
+      });
+    }
+  }
+
+  void _goToPreviousExercise() {
+    if (_currentExerciseIndex > 0) {
+      setState(() {
+        _currentExerciseIndex--;
+        _currentExercise = widget.exercises[_currentExerciseIndex];
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ejercicio: ${widget.exercise.name}'),
+        title: Text('Ejercicio: ${_currentExercise.name}'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(widget.exercise.description),
+            Text(_currentExercise.description),
             SizedBox(height: 20),
-            _exerciseTimer, // Uso de _exerciseTimer
+            ExerciseTimer(
+              duration: 60, // Cambia a la duración que desees
+              onTimerEnd: _goToNextExercise,
+              onNext: _goToNextExercise,
+              onPrevious: _goToPreviousExercise,
+            ),
           ],
         ),
       ),

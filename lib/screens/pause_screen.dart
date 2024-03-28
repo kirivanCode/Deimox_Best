@@ -28,8 +28,8 @@ class HomePage extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => TimerScreen(
-                    exercise: exercises[index],
-                    duration: 60, // Duración del ejercicio en segundos
+                    exercises: exercises,
+                    exerciseIndex: index,
                   ),
                 ),
               );
